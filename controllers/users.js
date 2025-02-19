@@ -3,10 +3,13 @@ import { User } from "../models/users.js"
 import mongoose from "mongoose"
 
 export const getAllUsers = async (req, res) => {
+    console.log("Fetching users...");
     try {
         const users = await User.find()
+        console.log("Users retrieved:", users);
         res.status(200).json(users)
     } catch (error) {
+        console.error("Error fetching users:", error);
         res.status(404).json({message: error.message})
     }
 }
